@@ -10,8 +10,6 @@ export const archerToFlow = ({ rows, root }) => {
     ),
   ].flat();
 
-  console.log(flattenedRows);
-
   const grouped = {};
 
   const keys = [];

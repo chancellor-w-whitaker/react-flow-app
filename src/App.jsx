@@ -1,11 +1,11 @@
 import { useConnections } from "./context/connections/useConnections";
 import { DropdownButton } from "./components/DropdownButton";
-import { ArcherExample } from "./components/ArcherExample";
+// import { ArcherExample } from "./components/ArcherExample";
 import { DropdownMenu } from "./components/DropdownMenu";
 import { DropdownItem } from "./components/DropdownItem";
 import { Popover } from "./components/Popover";
-import { Divider } from "./components/Divider";
-import { Button } from "./components/Button";
+// import { Divider } from "./components/Divider";
+// import { Button } from "./components/Button";
 import FlowElkjs from "./FlowElkjs";
 
 export default function App() {
@@ -20,16 +20,15 @@ export default function App() {
     root,
   } = useConnections();
 
+  const style = {
+    paddingBottom: 12,
+    height: "100vh",
+    width: "100vw",
+    paddingTop: 12,
+  };
+
   return (
-    <main
-      style={{
-        paddingBottom: 12,
-        height: "100vh",
-        width: "100vw",
-        paddingTop: 12,
-      }}
-      className="container"
-    >
+    <main className="container" style={style}>
       <div className="vstack h-100 gap-3">
         <div className="hstack gap-3">
           <Popover

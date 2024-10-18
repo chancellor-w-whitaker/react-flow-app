@@ -10,6 +10,8 @@ import { lists } from "./constants/lists";
 export function ConnectionsProvider({ children }) {
   const [connections, setConnections] = useState(initialConnections);
 
+  // console.log(connections);
+
   const updateConnections = (newConnection) =>
     setConnections((currentConnections) =>
       connect(currentConnections, newConnection)
@@ -52,6 +54,14 @@ export function ConnectionsProvider({ children }) {
 
   const getClickedItem = (listName, itemName) =>
     lists[listName].find(({ id }) => id === itemName);
+
+  const onConnect = ({ source, target }) => {
+    const clickedSource = getClickedItem(...source.split("→"));
+
+    const clickedTarget = getClickedItem(...target.split("→"));
+
+    updateConnections([clickedSource, clickedTarget]);
+  };
 
   const getConnectionsBetweenLevels = (...levels) => {
     if (listOrder.length > Math.max(...levels)) {
@@ -187,6 +197,7 @@ export function ConnectionsProvider({ children }) {
     rootOptions,
     archerRoot,
     archerRows,
+    onConnect,
     listOrder,
     isRoot,
     root,

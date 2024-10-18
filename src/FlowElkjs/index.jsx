@@ -25,7 +25,11 @@ const nodeTypes = {
 // get dropdowns back
 
 function Component() {
-  const { archerRoot: root, archerRows: rows } = useConnections();
+  const {
+    onConnect = (e) => console.log(e),
+    archerRoot: root,
+    archerRows: rows,
+  } = useConnections();
 
   const { nodes: initialNodes, edges: initialEdges } = archerToFlow({
     rows,
@@ -44,6 +48,7 @@ function Component() {
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       nodeTypes={nodeTypes}
+      onConnect={onConnect}
       nodes={nodes}
       edges={edges}
       fitView

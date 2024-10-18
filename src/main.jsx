@@ -1,11 +1,14 @@
 import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
 
-import App from "./App.jsx";
+import { ConnectionsProvider } from "./context/connections/ConnectionsProvider";
+import App from "./FlowElkjsApp";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <ConnectionsProvider>
+      <App></App>
+    </ConnectionsProvider>
   </StrictMode>
 );

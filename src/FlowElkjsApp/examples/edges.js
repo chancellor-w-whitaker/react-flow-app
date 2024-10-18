@@ -1,0 +1,51 @@
+export const edges = [
+  {
+    sourceHandle: "a-s-a",
+    targetHandle: "b-t-a",
+    source: "a",
+    target: "b",
+    id: "a-b",
+  },
+  {
+    sourceHandle: "a-s-c",
+    targetHandle: "c-t-c",
+    source: "a",
+    target: "c",
+    id: "a-c",
+  },
+  {
+    sourceHandle: "a-s-b",
+    targetHandle: "d-t-b",
+    source: "a",
+    target: "d",
+    id: "a-d",
+  },
+  {
+    sourceHandle: "b-s-a",
+    targetHandle: "e-t-a",
+    source: "b",
+    target: "e",
+    id: "b-e",
+  },
+  {
+    sourceHandle: "d-s-a",
+    targetHandle: "e-t-a",
+    source: "d",
+    target: "e",
+    id: "d-e",
+  },
+  {
+    sourceHandle: "e-s-a",
+    targetHandle: "f-t-b",
+    source: "e",
+    target: "f",
+    id: "e-f",
+  },
+  {
+    sourceHandle: "e-s-a",
+    targetHandle: "g-t-a",
+    source: "e",
+    target: "g",
+    id: "e-g",
+  },
+];

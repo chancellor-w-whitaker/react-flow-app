@@ -27,8 +27,8 @@ const createRandomConnection = () => {
   return [randomListItem, otherRandomListItem];
 };
 
-export const initializeConnections = () => {
-  const array = new Array(25);
+export const initializeConnections = (n = 15) => {
+  const array = new Array(n);
 
   let connections = [];
 

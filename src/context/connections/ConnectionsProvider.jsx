@@ -2,18 +2,12 @@ import { useState } from "react";
 
 import { initialConnections } from "./constants/initialConnections";
 import { initialListOrder } from "./constants/initialListOrder";
-import { DropdownButton } from "./components/DropdownButton";
 import { changeListOrder } from "./helpers/changeListOrder";
-import { ArcherExample } from "./components/ArcherExample";
-import { DropdownMenu } from "./components/DropdownMenu";
-import { DropdownItem } from "./components/DropdownItem";
-import { Popover } from "./components/Popover";
-import { Divider } from "./components/Divider";
-import { Button } from "./components/Button";
+import { ConnectionsContext } from "./ConnectionsContext";
 import { connect } from "./helpers/connect";
 import { lists } from "./constants/lists";
 
-export default function App() {
+export function ConnectionsProvider({ children }) {
   const [connections, setConnections] = useState(initialConnections);
 
   const updateConnections = (newConnection) =>
@@ -146,39 +140,6 @@ export default function App() {
     key: name,
   }));
 
-  // const [clickedTargets, setClickedTargets] = useState([]);
-
-  // const onTargetClick = (clickedTarget) =>
-  //   setClickedTargets((nodes) => {
-  //     const { key, id } = clickedTarget;
-
-  //     if (nodes.some((node) => node.key === key && node.id === id)) {
-  //       return nodes.filter((node) => !(node.key === key && node.id === id));
-  //     }
-
-  //     if (nodes.some((node) => node.key === key)) {
-  //       return [...nodes.filter((node) => !(node.key === key)), clickedTarget];
-  //     }
-
-  //     if (nodes.length < 2) {
-  //       return [...nodes, clickedTarget];
-  //     }
-
-  //     return nodes;
-  //   });
-
-  // const isNodeClicked = ({ key, id }) =>
-  //   clickedTargets.some((node) => node.key === key && node.id === id);
-
-  // const styleBox = ({ key, id }) => ({
-  //   border: `1px solid ${
-  //     typeof isBoxClicked === "function" && isBoxClicked({ key, id })
-  //       ? "yellow"
-  //       : "black"
-  //   }`,
-  //   padding: "10px",
-  // });
-
   const [clickedTarget, setClickedTarget] = useState({});
 
   const clickedTargetId =
@@ -196,10 +157,10 @@ export default function App() {
 
   const resetClickedTarget = () => setClickedTarget({});
 
-  const [prevRoot, setPrevRoot] = useState(root);
+  const [previousRoot, setPreviousRoot] = useState(root);
 
-  if (prevRoot !== root) {
-    setPrevRoot(root);
+  if (previousRoot !== root) {
+    setPreviousRoot(root);
 
     resetClickedTarget();
   }
@@ -215,62 +176,25 @@ export default function App() {
     }
   };
 
-  // need to get on click handlers working
+  const context = {
+    representListPosition,
+    onRootOptionClicked,
+    updateListOrder,
+    clickedTargetId,
+    onClickConfirm,
+    onTargetClick,
+    listOptions,
+    rootOptions,
+    archerRoot,
+    archerRows,
+    listOrder,
+    isRoot,
+    root,
+  };
 
   return (
-    <main className="container">
-      <Divider>
-        <Popover
-          openUp={
-            <DropdownMenu>
-              {listOptions.map((option) => (
-                <li key={option}>
-                  <DropdownItem onClick={() => updateListOrder(option)}>
-                    {option} {representListPosition(option)}
-                  </DropdownItem>
-                </li>
-              ))}
-            </DropdownMenu>
-          }
-          openWith={
-            <DropdownButton>Order: {listOrder.join(", ")}</DropdownButton>
-          }
-        ></Popover>
-      </Divider>
-      <Divider>
-        <Popover
-          openUp={
-            <DropdownMenu>
-              {rootOptions.map((option) => (
-                <li key={option}>
-                  <DropdownItem
-                    className={isRoot(option) ? "active" : null}
-                    onClick={() => onRootOptionClicked(option)}
-                  >
-                    {option}
-                  </DropdownItem>
-                </li>
-              ))}
-            </DropdownMenu>
-          }
-          openWith={<DropdownButton>Root: {root}</DropdownButton>}
-        ></Popover>
-      </Divider>
-      <Divider>
-        {listOrder.length > 0 && (
-          <ArcherExample
-            clickedTargetId={clickedTargetId}
-            onTargetClick={onTargetClick}
-            root={archerRoot}
-            rows={archerRows}
-          ></ArcherExample>
-        )}
-      </Divider>
-      <Divider>
-        <Button disabled={!clickedTargetId} onClick={onClickConfirm}>
-          Confirm
-        </Button>
-      </Divider>
-    </main>
+    <ConnectionsContext.Provider value={context}>
+      {children}
+    </ConnectionsContext.Provider>
   );
 }

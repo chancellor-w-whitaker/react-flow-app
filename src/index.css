@@ -44,3 +44,7 @@ body {
   right: -2px;
   top: 0;
 }
+
+.react-flow__edges {
+  z-index: 1;
+}

@@ -8,6 +8,14 @@ import { Popover } from "./components/Popover";
 // import { Button } from "./components/Button";
 import FlowElkjs from "./FlowElkjs";
 
+// click both nodes & confirm (how you had it previously)
+// green lines (edges) & green dots where connected (black if not connected)
+// make view adjust (reset key of tree) when width changes (width context)
+// prevent dragging
+// search box (search any id & shows which type item is & on click moves clicked type to front of order) (put back search on data page when reports > 12 or 11) (take search function from data page)
+// default view: order--user, group, reports; root--random user or first user
+// on click flow app doesn't cancel dropdown open
+
 export default function App() {
   const {
     representListPosition,

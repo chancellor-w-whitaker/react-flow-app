@@ -26,7 +26,7 @@ export const archerToFlow = ({ rows, root }) => {
     grouped[key].push(row);
 
     row.position = {
-      y: grouped[key].indexOf(row) * 50,
+      y: grouped[key].indexOf(row) * 30,
       x: keys.indexOf(key) * 400,
     };
   });

@@ -65,7 +65,7 @@ export const archerToFlow = ({ rows, root }) => {
   }));
 
   const edges = nodes
-    .map(({ id: source, targetIds }) =>
+    .map(({ targetIds = [], id: source }) =>
       targetIds.map((target) => ({
         sourceHandle: `${source}-s-a`,
         targetHandle: `${target}-t-a`,

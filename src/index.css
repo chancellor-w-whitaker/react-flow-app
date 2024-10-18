@@ -5,10 +5,10 @@ body {
   box-sizing: border-box;
 }
 
-#root {
+/* #root {
   width: 100vw;
   height: 100vh;
-}
+} */
 
 .react-flow__node-elk {
   background: #f8f8f8;
